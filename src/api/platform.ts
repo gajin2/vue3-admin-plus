@@ -81,7 +81,7 @@ export const getPlatform = (id) => {
   })
 }
 //导入
-export const importReq=(updateSupport)=> {
+export const importReq=()=> {
   return request({
     url: `/system/platform/import`,
     method: 'post',

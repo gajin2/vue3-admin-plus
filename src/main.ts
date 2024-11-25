@@ -2,7 +2,6 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import ElementPlus from 'element-plus'
-import JsonEditorVue from 'json-editor-vue3'
 import VXETable from 'vxe-table'
 import App from './App.vue'
 import router from './router'
@@ -31,15 +30,10 @@ import 'element-plus/dist/index.css'
 //import element-plus svg icon
 import ElSvgIcon from '@/lib/el-svg-icon'
 
-
-//jsonEidt
-import 'jsoneditor'
-
 //import vxe-table
 import 'vxe-table/lib/style.css'
 const app = createApp(App)
 app.use(ElSvgIcon)
-app.use(JsonEditorVue)
 //router
 app.use(router)
 

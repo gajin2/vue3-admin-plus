@@ -23,7 +23,7 @@ export default {
             }
         };
         // 取消计时器
-        const cancel = (e) => {
+        const cancel = () => {
             if (pressTimer !== null) {
                 clearTimeout(pressTimer);
                 pressTimer = null;

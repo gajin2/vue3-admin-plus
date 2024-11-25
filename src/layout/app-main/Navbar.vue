@@ -6,7 +6,7 @@
         v-if="settings.showHamburger"
         :is-active="sidebar.opened"
         class="hamburger-container"
-        @toggleClick="toggleSideBar"
+        @toggle-click="toggleSideBar"
       />
       <!--  面包屑导航  -->
       <breadcrumb class="breadcrumb-container" />
@@ -16,14 +16,13 @@
     <!-- 下拉操作菜单 -->
     <div v-if="settings.ShowDropDown" class="right-menu rowSC">
       <ScreenFull />
-      <ScreenLock/>
+      <ScreenLock />
       <ThemeSelect />
       <SizeSelect />
       <LangSelect />
       <el-dropdown trigger="click" size="medium">
         <div class="avatar-wrapper">
-          <img src="https://github.jzfai.top/file/images/nav-right-logo.gif" class="user-avatar" />
-          <CaretBottom style="width: 1em; height: 1em; margin-left: 4px" />
+          <svg-icon icon-class="user" class="user" />
         </div>
         <template #dropdown>
           <el-dropdown-menu>
@@ -45,7 +44,6 @@
         </template>
       </el-dropdown>
     </div>
-
   </div>
 </template>
 

@@ -1,8 +1,8 @@
 import settings from './settings'
-import router from '@/router'
-import { filterAsyncRouter, progressClose, progressStart } from '@/hooks/use-permission'
+import router, {asyncRoutes} from '@/router'
+import { progressClose, progressStart } from '@/hooks/use-permission'
 import { useBasicStore } from '@/store/basic'
-import { getRouterReq, userInfoReq } from '@/api/user'
+import { userInfoReq } from '@/api/user'
 import { langTitle } from '@/hooks/use-common'
 
 //路由进入前拦截
@@ -32,8 +32,21 @@ router.beforeEach(async (to) => {
           // @ts-ignore
           basicStore.setUserInfo(userInfo)
           //4.路由设置
-          const routeInfo = await getRouterReq()
-          filterAsyncRouter(routeInfo)
+          // 修改：不请求后端路由
+          // const routeInfo = await getRouterReq()
+          // filterAsyncRouter(routeInfo)
+
+          // 修改：由后端权限决定路由
+          const authMap: Map<string, boolean> = new Map<string, boolean>();
+          // 模拟权限1
+          authMap['1'] = true;
+          // 请求后端修改authMap
+          const okRoute = generateRoutes(asyncRoutes, authMap);
+          // 添加过滤后的路由
+          okRoute.forEach((route) => {
+            router.addRoute(route)
+          })
+          basicStore.setFilterAsyncRoutes(okRoute)
 
           //5.再次执行路由跳转
           return { ...to, replace: true }

@@ -67,5 +67,5 @@ function compare(property) {
     return value1 - value2;
   }
 }
-console.log(newArray.sort(compare("value")))
+
 </script>

@@ -8,7 +8,6 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     ColumnFilter: typeof import('./../src/components/ColumnFilter.vue')['default']
-    DictTag: typeof import('./../src/components/DictTag.vue')['default']
     ElSvgIcon: typeof import('./../src/components/ElSvgIcon.vue')['default']
     FileUpload: typeof import('./../src/components/FileUpload/index.vue')['default']
     InnerLink: typeof import('./../src/components/InnerLink/index.vue')['default']

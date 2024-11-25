@@ -10,7 +10,7 @@ export default {
             return;
         }
         let timer = null;
-        el.__handleClick__ = function (e) {
+        el.__handleClick__ = function () {
             if (timer) {
                 clearInterval(timer);
             }

@@ -28,6 +28,32 @@ export function filterAsyncRouter(data) {
   basicStore.setFilterAsyncRoutes(fileAfterRouter)
 }
 
+// 自定义权限路由
+export function generateRoutes(routes: Array<any>, authMap: Map<string, boolean>) {
+  const okRoute: any[] = [];
+  routes.forEach(route => {
+
+    // console.log(route);
+
+    const tmp = { ...route };
+
+    if (tmp.meta?.roles) { // 需要判断权限
+      for (const it of tmp.meta?.roles) {
+        if (authMap[it]) { // 有权限?
+          okRoute.push(tmp);
+
+          if (tmp.children) {
+            tmp.children = generateRoutes(tmp.children, authMap);
+          }
+        }
+      }
+    } else {
+      okRoute.push(tmp);
+    }
+  });
+
+  return okRoute;
+}
 
 //重置路由
 export function resetRouter() {

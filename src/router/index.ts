@@ -1,10 +1,10 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 /* Router Modules */
-import charts from './modules/charts'
-import guid from './modules/guid'
-import excel from './modules/excel'
-import directive from './modules/directive'
-import table from './modules/table'
+// import charts from './modules/charts'
+// import guid from './modules/guid'
+// import excel from './modules/excel'
+// import directive from './modules/directive'
+// import table from './modules/table'
 import Layout from '@/layout/index.vue'
 export const constantRoutes = [
   {
@@ -182,7 +182,36 @@ export const roleCodeRoutes = [
  * asyncRoutes
  * the routes that need to be dynamically loaded based on user roles
  */
-export const asyncRoutes = []
+export const asyncRoutes = [
+  {
+    path: '/non-auth',
+    component: Layout,
+    meta: { title: '不需要权限', icon: 'edit' },
+    children: [
+      {
+        path: 'test1',
+        name: 'NonAuthTest1',
+        component: () => import('@/views/nonauth/test1.vue'),
+        //using el svg icon, the elSvgIcon first when at the same time using elSvgIcon and icon
+        meta: { title: '不需要权限测试1', elSvgIcon: 'Fold', affix: true },
+      }
+    ]
+  },
+  {
+    path: '/auth',
+    component: Layout,
+    meta: { title: '微信(未好)', icon: 'edit', roles: ['1'] },
+    children: [
+      {
+        path: 'test2',
+        name: 'AuthTest2',
+        component: () => import('@/views/auth/test2.vue'),
+        //using el svg icon, the elSvgIcon first when at the same time using elSvgIcon and icon
+        meta: { title: '权限1测试2', elSvgIcon: 'Fold', affix: true, roles: ['1'] },
+      }
+    ]
+  }
+]
 export const noMathPage = { path: '/:pathMatch(.*)', redirect: '/404', hidden: true }
 const router = createRouter({
   history: createWebHashHistory(),
